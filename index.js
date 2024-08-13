@@ -7,17 +7,63 @@
  * **********************************************************************************************************************************************/
 
 // Function checks if local storage already has data, if not it loads initialData to localStorage
+ let initialData = [] // created an empty variable /array  which would allow us to set the intial value at empty
+
 function initializeData() {
   if (!localStorage.getItem('tasks')) {
-    localStorage.setItem('tasks', JSON.stringify(initialData)); 
+    localStorage.setItem('tasks', JSON.stringify(initialData)); // The initialData is a problem  since its not intialzized 
     localStorage.setItem('showSideBar', 'true')
   } else {
     console.log('Data already exists in localStorage');
   }
 }
 
-// TASK: Get elements from the DOM
-const elements = {
+// TASK: Get elements from the DOM 
+const elements = { // got all these elements directly  from the  html  . They are stored as key valie pairs which will allow us to  get them later 
+  sideBar: document.getElementById('side-bar-div'),
+  logo: document.getElementById('logo'),
+  boardsNavLinks: document.getElementById('boards-nav-links-div'),
+  headlineSidepanel: document.getElementById('headline-sidepanel'),
+  iconDark: document.getElementById('icon-dark'),
+  switch: document.getElementById('switch'),
+  labelCheckboxTheme: document.getElementById('label-checkbox-theme'),
+  iconLight: document.getElementById('icon-light'),
+  hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
+  showSideBarBtn: document.getElementById('show-side-bar-btn'),
+  layout: document.getElementById('layout'),
+  header: document.getElementById('header'),
+  headerBoardName: document.getElementById('header-board-name'),
+  dropdownBtn: document.getElementById('dropdownBtn'),
+  dropDownIcon: document.getElementById('dropDownIcon'),
+  addNewTaskBtn: document.getElementById('add-new-task-btn'),
+  editBoardBtn: document.getElementById('edit-board-btn'),
+  editBoardDiv: document.getElementById('editBoardDiv'),
+  deleteBoardBtn: document.getElementById('deleteBoardBtn'),
+  todoDot: document.getElementById('todo-dot'),
+  toDoText: document.getElementById('toDoText'),
+  doingDot: document.getElementById('doing-dot'),
+  doingText: document.getElementById('doingText'),
+  doneDot: document.getElementById('done-dot'),
+  doneText: document.getElementById('doneText'),
+  newTaskModal: document.getElementById('new-task-modal-window'),
+  titleInput: document.getElementById('title-input'),
+  descInput: document.getElementById('desc-input'),
+  selectStatus: document.getElementById('select-status'),
+  createTaskBtn: document.getElementById('create-task-btn'),
+  cancelAddTaskBtn: document.getElementById('cancel-add-task-btn'),
+  editTaskModal: document.querySelector('.edit-task-modal-window'),
+  editTaskForm: document.getElementById('edit-task-form'),
+  editTaskTitleInput: document.getElementById('edit-task-title-input'),
+  editTaskDescInput: document.getElementById('edit-task-desc-input'),
+  editSelectStatus: document.getElementById('edit-select-status'),
+  saveTaskChangesBtn: document.getElementById('save-task-changes-btn'),
+  cancelEditBtn: document.getElementById('cancel-edit-btn'),
+  deleteTaskBtn: document.getElementById('delete-task-btn'),
+  filterDiv: document.getElementById('filterDiv')
+
+
+
+
 
 }
 
