@@ -72,9 +72,9 @@ let activeBoard = ""
 // Extracts unique board names from tasks
 // TASK: FIX BUGS
 function fetchAndDisplayBoardsAndTasks() { // The aim of this function is fetch and display the boards tasks within the code 
-  const tasks = getTasks(); // What this code will do is equivicate  the get task function into variable 
+  const tasks = getTasks(); // What this code will turn the  task function into variable 
   const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))];
-  displayBoards(boards); // this function is  wri
+  displayBoards(boards); // this function is  written later in the code , therefore is considered a call back fu
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
     activeBoard = localStorageBoard ? localStorageBoard :  boards[0];  //syntax error  was found here 
@@ -93,13 +93,13 @@ function displayBoards(boards) {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
-    boardElement.click()  { 
+    boardElement.addEventListener("click", () =>  {  //The click meant nothing without the event listener added
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
       activeBoard = board //assigns active board
       localStorage.setItem("activeBoard", JSON.stringify(activeBoard))
       styleActiveBoard(activeBoard)
-    };
+    });
     boardsContainer.appendChild(boardElement);
   });
 
