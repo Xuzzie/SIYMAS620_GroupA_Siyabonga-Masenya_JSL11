@@ -71,13 +71,13 @@ let activeBoard = ""
 
 // Extracts unique board names from tasks
 // TASK: FIX BUGS
-function fetchAndDisplayBoardsAndTasks() {
-  const tasks = getTasks();
+function fetchAndDisplayBoardsAndTasks() { // The aim of this function is fetch and display the boards tasks within the code 
+  const tasks = getTasks(); // What this code will do is equivicate  the get task function into variable 
   const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))];
-  displayBoards(boards);
+  displayBoards(boards); // this function is  wri
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
-    activeBoard = localStorageBoard ? localStorageBoard ;  boards[0]; 
+    activeBoard = localStorageBoard ? localStorageBoard :  boards[0];  //syntax error  was found here 
     elements.headerBoardName.textContent = activeBoard
     styleActiveBoard(activeBoard)
     refreshTasksUI();
