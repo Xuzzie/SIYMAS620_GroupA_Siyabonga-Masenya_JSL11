@@ -29,7 +29,7 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
-  // got all these elements directly  from the  html  . They are stored as key valie pairs which will allow us to  get them later
+  // got all these elements directly  from the  html  . They are stored as key value  pairs which will allow us to  get them later
   sideBar: document.getElementById("side-bar-div"),
   logo: document.getElementById("logo"),
   boardsNavLinks: document.getElementById("boards-nav-links-div"),
@@ -247,7 +247,13 @@ function addTask(event) {
   event.preventDefault();
 
   //Assign user input to the task object
-  const task = {};
+  const task = {
+    title: elements.titleInput.value, /// im not sure whats better  using elements  or going straight to  document.getElementById but im taking the user input  and storing it in the task  object
+    description: elements.descInput.value,
+    status: elements.selectStatus.value,
+    board: elements.board.value,
+  };
+
   const newTask = createNewTask(task);
   if (newTask) {
     addTaskToUI(newTask);
@@ -258,9 +264,22 @@ function addTask(event) {
   }
 }
 
-function toggleSidebar(show) {}
+function toggleSidebar(show) {
+  elements.sideBar.style.display = show ? block : none;
+} //added code to toggle sidebar , I needed help with this since i forgot how to do this
 
-function toggleTheme() {}
+function toggleTheme() {
+  const body = document.body;
+  if (body.classList.contains("light-theme")) {
+    // If the light theme  theme is active, switch to  remove it and place  dark theme visa versa
+
+    body.classList.remove("light-theme");
+    body.classList.add("dark-theme");
+  } else {
+    body.classList.remove("dark-theme");
+    body.classList.add("light-theme");
+  }
+}
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
