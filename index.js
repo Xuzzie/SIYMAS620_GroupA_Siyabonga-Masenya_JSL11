@@ -300,7 +300,7 @@ function openEditTaskModal(task) {
 
   deleteTaskButton.onclick = function () {
     deleteTask(task.id);
-    toggleModal(false, elements.editTaskModal);
+    toggleModal(false, elements.editTaskModal); // have huge issues understanding false need to study further
   };
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
@@ -308,6 +308,12 @@ function openEditTaskModal(task) {
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
+
+  const updatedTitle = document.getElementById("editTaskTitle").value;
+  const updatedDescription = document.getElementById(
+    "editTaskDescription"
+  ).value;
+  const updatedDueDate = document.getElementById("editTaskDueDate").value;
 
   // Create an object with the updated task details
 
