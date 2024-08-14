@@ -1,7 +1,9 @@
 // TASK: import helper functions from utils
+import { getTasks,saveTasks,createNewTask,putTask,patchTask,deleteTask} from "./utils/taskFunctions";
 // TASK: import initialData
-import { getTasks, saveTasks, createNewTask, patchTask, putTask, deleteTask } from "./utils/taskFunctions.js"
-import { initialData } from "./initialData.js"
+import { initialData } from "./initialData.js";
+//console.log(initialData); //
+
 
 
 /*************************************************************************************************************************************************
@@ -12,12 +14,15 @@ import { initialData } from "./initialData.js"
 
 function initializeData() {
   if (!localStorage.getItem('tasks')) {
-    localStorage.setItem('tasks', JSON.stringify(initialData)); // The initialData is a problem  since its not intialzized 
+    localStorage.setItem('tasks', JSON.stringify(initialData)); // The initialData is a problem  since its not intialzized  we imported the data utils
     localStorage.setItem('showSideBar', 'true')
+    console.log('Data has been initialized and saved to localStorage.');
   } else {
     console.log('Data already exists in localStorage');
   }
 }
+
+
 
 // TASK: Get elements from the DOM 
 const elements = { // got all these elements directly  from the  html  . They are stored as key valie pairs which will allow us to  get them later 
@@ -306,3 +311,6 @@ function init() {
   document.body.classList.toggle('light-theme', isLightTheme);
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
+
+
+
