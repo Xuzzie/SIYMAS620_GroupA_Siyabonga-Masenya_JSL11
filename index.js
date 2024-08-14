@@ -1,5 +1,6 @@
+
 // TASK: import helper functions from utils
-import { getTasks,saveTasks,createNewTask,putTask,patchTask,deleteTask} from "./utils/taskFunctions";
+import  { getTasks, saveTasks, createNewTask, patchTask, putTask, deleteTask } from "./utils/taskFunctions";
 // TASK: import initialData
 import { initialData } from "./initialData.js";
 //console.log(initialData); //
@@ -21,6 +22,7 @@ function initializeData() {
     console.log('Data already exists in localStorage');
   }
 }
+
 
 
 
@@ -154,7 +156,7 @@ function refreshTasksUI() {
 // Styles the active board by adding an active class
 // TASK: Fix Bugs
 function styleActiveBoard(boardName) {
-  document.querySelectorAll('.board-btn').foreach(btn => { 
+  document.querySelectorAll('.board-btn').forEach(btn => {  
     
     if(btn.textContent === boardName) {
       btn.add('active') 
@@ -167,7 +169,7 @@ function styleActiveBoard(boardName) {
 
 
 function addTaskToUI(task) {
-  const column = document.querySelector('.column-div[data-status="${task.status}"]'); 
+  const column = document.querySelector(`.column-div[data-status="${task.status}"]`);  // this looks like a template literal 
   if (!column) {
     console.error(`Column not found for status: ${task.status}`);
     return;
