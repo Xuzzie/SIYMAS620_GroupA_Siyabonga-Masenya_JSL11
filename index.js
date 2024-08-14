@@ -1,5 +1,7 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
+import { getTasks, saveTasks, createNewTask, patchTask, putTask, deleteTask } from "./utils/taskFunctions.js"
+import { initialData } from "./initialData.js"
 
 
 /*************************************************************************************************************************************************
@@ -7,7 +9,6 @@
  * **********************************************************************************************************************************************/
 
 // Function checks if local storage already has data, if not it loads initialData to localStorage
- let initialData = [] // created an empty variable /array  which would allow us to set the intial value at empty
 
 function initializeData() {
   if (!localStorage.getItem('tasks')) {
