@@ -316,13 +316,21 @@ function saveTaskChanges(taskId) {
   const updatedDueDate = document.getElementById("editTaskDueDate").value;
 
   // Create an object with the updated task details
-
+  const updatedTask = {
+    id: taskId,
+    title: updatedTitle,
+    description: updatedDescription,
+    dueDate: updatedDueDate,
+  };
   // Update task using a hlper functoin
+  updateTask(updatedTask);
 
   // Close the modal and refresh the UI to reflect the changes
 
   refreshTasksUI();
 }
+toggleModal(false, elements.editTaskModal);
+refreshTasksUI();
 
 /*************************************************************************************************************************************************/
 
