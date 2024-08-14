@@ -1,15 +1,12 @@
 // TASK: import helper functions from utils
 import {
   getTasks,
-  saveTasks,
   createNewTask,
   patchTask,
   putTask,
   deleteTask,
-} from "./utils/taskFunctions";
-// TASK: import initialData
+} from "./utils/taskFunctions.js";
 import { initialData } from "./initialData.js";
-//console.log(initialData); //
 
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
@@ -27,48 +24,49 @@ function initializeData() {
   }
 }
 
+initializeData(); // added intiatlize data call hopefully it will work
+
 // TASK: Get elements from the DOM
 const elements = {
   // got all these elements directly  from the  html  . They are stored as key value  pairs which will allow us to  get them later
-  sideBar: document.getElementById("side-bar-div"),
-  logo: document.getElementById("logo"),
-  boardsNavLinks: document.getElementById("boards-nav-links-div"),
-  headlineSidepanel: document.getElementById("headline-sidepanel"),
-  iconDark: document.getElementById("icon-dark"),
-  switch: document.getElementById("switch"),
-  labelCheckboxTheme: document.getElementById("label-checkbox-theme"),
-  iconLight: document.getElementById("icon-light"),
+  themeSwitch: document.getElementById("switch"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
   showSideBarBtn: document.getElementById("show-side-bar-btn"),
-  layout: document.getElementById("layout"),
-  header: document.getElementById("header"),
+
+  // re added the elements  somthing is wrong and maybe it was the elements being fetched
+  //Update  the manner in which i added my elements  led to none of my code working i dont know how it fixed
+
+  headerSectionContainer: document.getElementById("layout"),
+  button: document.getElementById("dropdownBtn"),
+  addNewTaskButton: document.getElementById("add-new-task-btn"),
+  editButton: document.getElementById("edit-board-btn"),
   headerBoardName: document.getElementById("header-board-name"),
-  dropdownBtn: document.getElementById("dropdownBtn"),
-  dropDownIcon: document.getElementById("dropDownIcon"),
-  addNewTaskBtn: document.getElementById("add-new-task-btn"),
-  editBoardBtn: document.getElementById("edit-board-btn"),
-  editBoardDiv: document.getElementById("editBoardDiv"),
-  deleteBoardBtn: document.getElementById("deleteBoardBtn"),
-  todoDot: document.getElementById("todo-dot"),
-  toDoText: document.getElementById("toDoText"),
-  doingDot: document.getElementById("doing-dot"),
-  doingText: document.getElementById("doingText"),
-  doneDot: document.getElementById("done-dot"),
-  doneText: document.getElementById("doneText"),
-  newTaskModal: document.getElementById("new-task-modal-window"),
-  titleInput: document.getElementById("title-input"),
-  descInput: document.getElementById("desc-input"),
-  selectStatus: document.getElementById("select-status"),
+  deleteTaskButton: document.getElementById("deleteBoardBtn"),
+  createNewTaskBtn: document.getElementById("add-new-task-btn"),
+
+  columnDivs: document.querySelectorAll("column-div"),
+
+  form: document.getElementById("new-task-modal-window"),
+  input: document.getElementById("title-input"),
+  textArea: document.getElementById("desc-input"),
+  selectColumn: document.getElementById("select-status"),
+  btnContainer: document.getElementById("button-group"),
   createTaskBtn: document.getElementById("create-task-btn"),
   cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
-  editTaskModal: document.querySelector(".edit-task-modal-window"),
-  editTaskForm: document.getElementById("edit-task-form"),
-  editTaskTitleInput: document.getElementById("edit-task-title-input"),
-  editTaskDescInput: document.getElementById("edit-task-desc-input"),
-  editSelectStatus: document.getElementById("edit-select-status"),
+
+  editModalTaskContainer: document.getElementById("edit-task-modal-window"),
+  input: document.getElementById("edit-task-title-input"),
+  editBtn: document.getElementById("edit-btn"),
+  textArea: document.getElementById("edit-task-desc-input"),
+  select: document.getElementById("edit-select-status"),
+  btnContainer: document.getElementById("edit-task-div button-group"),
   saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
   cancelEditBtn: document.getElementById("cancel-edit-btn"),
   deleteTaskBtn: document.getElementById("delete-task-btn"),
+  modalWindow: document.getElementById("new-task-modal-window"),
+
+  editTaskModal: document.getElementById("new-task-modal-window"),
+
   filterDiv: document.getElementById("filterDiv"),
 };
 
@@ -141,7 +139,7 @@ function filterAndDisplayTasksByBoard(boardName) {
         taskElement.setAttribute("data-task-id", task.id);
 
         // Listen for a click event on each task and open a modal
-        taskElement.addEventListener(click, () => {
+        taskElement.addEventListener("click", () => {
           // this code lacked the "addEventListener"
           openEditTaskModal(task);
         });
@@ -160,9 +158,9 @@ function refreshTasksUI() {
 function styleActiveBoard(boardName) {
   document.querySelectorAll(".board-btn").forEach((btn) => {
     if (btn.textContent === boardName) {
-      btn.add("active");
+      btn.classList.add("active");
     } else {
-      btn.remove("active");
+      btn.classList.remove("active");
     }
   });
 }
@@ -191,13 +189,13 @@ function addTaskToUI(task) {
   taskElement.textContent = task.title; // Modify as needed
   taskElement.setAttribute("data-task-id", task.id);
 
-  tasksContainer.appendChild();
+  tasksContainer.appendChild(taskElement);
 }
 
 function setupEventListeners() {
   // Cancel editing task event listener
   const cancelEditBtn = document.getElementById("cancel-edit-btn");
-  cancelEditBtn.addEventListener(click, () =>
+  cancelEditBtn.addEventListener("click", () =>
     toggleModal(false, elements.editTaskModal)
   ); //added event listener and fixed syntax
 
@@ -251,13 +249,13 @@ function addTask(event) {
     title: elements.titleInput.value, /// im not sure whats better  using elements  or going straight to  document.getElementById but im taking the user input  and storing it in the task  object
     description: elements.descInput.value,
     status: elements.selectStatus.value,
-    board: elements.board.value,
+    board: activeBoard,
   };
 
   const newTask = createNewTask(task);
   if (newTask) {
     addTaskToUI(newTask);
-    toggleModal(false);
+    toggleModal(false, elements.newTaskModal); // Ensure the correct modal is hidden
     elements.filterDiv.style.display = "none"; // Also hide the filter overlay
     event.target.reset();
     refreshTasksUI();
@@ -265,7 +263,7 @@ function addTask(event) {
 }
 
 function toggleSidebar(show) {
-  elements.sideBar.style.display = show ? block : none;
+  elements.sideBar.style.display = show ? "block" : "none";
 } //added code to toggle sidebar , I needed help with this since i forgot how to do this
 
 function toggleTheme() {
@@ -330,7 +328,7 @@ function saveTaskChanges(taskId) {
   refreshTasksUI();
 }
 toggleModal(false, elements.editTaskModal);
-refreshTasksUI();
+refreshTasksUI(); //struggled with section
 
 /*************************************************************************************************************************************************/
 
