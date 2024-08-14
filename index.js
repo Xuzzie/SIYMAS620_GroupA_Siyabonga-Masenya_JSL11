@@ -288,10 +288,20 @@ function openEditTaskModal(task) {
   document.getElementById("editTaskDueDate").value = task.dueDate;
 
   // Get button elements from the task modal
+  const saveChangesButton = document.getElementById("saveChangesButton"); // conencted elements for the buttons
+  const deleteTaskButton = document.getElementById("deleteTaskButton");
 
   // Call saveTaskChanges upon click of Save Changes button
+  saveChangesButton.onclick = function () {
+    saveTaskChanges(task.id);
+  };
 
   // Delete task using a helper function and close the task modal
+
+  deleteTaskButton.onclick = function () {
+    deleteTask(task.id);
+    toggleModal(false, elements.editTaskModal);
+  };
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
