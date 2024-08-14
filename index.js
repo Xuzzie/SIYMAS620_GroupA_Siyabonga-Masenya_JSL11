@@ -215,8 +215,8 @@ function setupEventListeners() {
   });
 
   // Show sidebar event listener
-  elements.hideSideBarBtn.addEventListener(click, () => toggleSidebar(false)); // added  event listeners to the code in this section
-  elements.showSideBarBtn.addEventListener(click, () => toggleSidebar(true));
+  elements.hideSideBarBtn.addEventListener("click", () => toggleSidebar(false)); // added  event listeners to the code in this section
+  elements.showSideBarBtn.addEventListener("click", () => toggleSidebar(true));
 
   // Theme switch event listener
   elements.themeSwitch.addEventListener("change", toggleTheme);
@@ -283,6 +283,9 @@ function toggleTheme() {
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
+  document.getElementById("editTaskTitle").value = task.title; // we are adding the existing details into the tasks
+  document.getElementById("editTaskDescription").value = task.description;
+  document.getElementById("editTaskDueDate").value = task.dueDate;
 
   // Get button elements from the task modal
 
