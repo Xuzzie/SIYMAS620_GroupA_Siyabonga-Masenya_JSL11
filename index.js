@@ -222,19 +222,19 @@ function toggleModal(show, modal = elements.modalWindow) {
 
 function addTask(event) {
   event.preventDefault();
-
+  const taskTitle = document.getElementById("title-input").value;
   //Assign user input to the task object
   const task = {
-    title: elements.titleInput.value, /// im not sure whats better  using elements  or going straight to  document.getElementById but im taking the user input  and storing it in the task  object
-    description: elements.descInput.value,
-    status: elements.selectStatus.value,
-    board: activeBoard,
+    title: document.getElementById("title-input").value, // changed from  fetching the element to directly fetching the id
+    description: document.getElementById("desc-input").value,
+    status: document.getElementById("select-status").value,
+    board: elements.headerBoardName.textContent,
   };
 
   const newTask = createNewTask(task);
   if (newTask) {
     addTaskToUI(newTask);
-    toggleModal(false, elements.newTaskModal); // Ensure the correct modal is hidden
+    toggleModal(false); // Ensure the correct modal is hidden
     elements.filterDiv.style.display = "none"; // Also hide the filter overlay
     event.target.reset();
     refreshTasksUI();
@@ -242,7 +242,11 @@ function addTask(event) {
 }
 
 function toggleSidebar(show) {
-  elements.sideBar.style.display = show ? "block" : "none";
+  document.getElementById("side-bar-div").style.display = show // redone code for toggle sidebar
+    ? "block"
+    : "none";
+  elements.showSideBarBtn.style.display = show ? "none" : "block";
+  localStorage.showSideBar = show;
 } //added code to toggle sidebar , I needed help with this since i forgot how to do this
 
 function toggleTheme() {
