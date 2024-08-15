@@ -325,4 +325,5 @@ function init() {
   const isLightTheme = localStorage.getItem("light-theme") === "enabled";
   document.body.classList.toggle("light-theme", isLightTheme);
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
+  document.getElementById("edit-task-form").reset(); // added code that would reset  previous tasks after being writen
 }
