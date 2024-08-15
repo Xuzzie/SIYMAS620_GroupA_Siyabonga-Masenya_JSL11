@@ -21,7 +21,6 @@ function initializeData() {
     localStorage.setItem("tasks", JSON.stringify(initialData)); // The initialData is a problem  since its not intialzized  we imported the data utils
     localStorage.setItem("showSideBar", "true");
     localStorage.setItem("light-theme", "false"); // added this to intialize light theme functionality
-    localStorage.setItem("activeBoard", JSON.stringify("Launch Career"));
     console.log("Data has been initialized and saved to localStorage.");
   } else {
     console.log("Data already exists in localStorage");
@@ -33,9 +32,6 @@ initializeData(); // added intiatlize data call hopefully it will work
 // TASK: Get elements from the DOM
 const elements = {
   // got all these elements directly  from the  html  . They are stored as key value  pairs which will allow us to  get them later
-  themeSwitch: document.getElementById("switch"),
-  hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
-  showSideBarBtn: document.getElementById("show-side-bar-btn"),
 
   // re added the elements  somthing is wrong and maybe it was the elements being fetched
   //Update  the manner in which i added my elements  led to none of my code working i dont know how it fixed
@@ -56,6 +52,7 @@ let activeBoard = "";
 
 // Extracts unique board names from tasks
 // TASK: FIX BUGS
+
 function fetchAndDisplayBoardsAndTasks() {
   // The aim of this function is fetch and display the boards tasks within the code
   const tasks = getTasks(); // What this code will turn the  task function into variable
@@ -149,7 +146,7 @@ function styleActiveBoard(boardName) {
 
 function addTaskToUI(task) {
   const column = document.querySelector(
-    `.column-div[data-status="${task.status}"]`
+    `.column-div[data-status="${task.status}"]` // i didnt add the  ".column" in earlier elemnts which caused problems
   ); // this looks like a template literal
   if (!column) {
     console.error(`Column not found for status: ${task.status}`);
