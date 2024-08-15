@@ -21,6 +21,7 @@ function initializeData() {
     localStorage.setItem("tasks", JSON.stringify(initialData)); // The initialData is a problem  since its not intialzized  we imported the data utils
     localStorage.setItem("showSideBar", "true");
     localStorage.setItem("light-theme", "false"); // added this to intialize light theme functionality
+    localStorage.setItem("activeBoard", JSON.stringify("Launch Career"));
     console.log("Data has been initialized and saved to localStorage.");
   } else {
     console.log("Data already exists in localStorage");
@@ -38,39 +39,17 @@ const elements = {
 
   // re added the elements  somthing is wrong and maybe it was the elements being fetched
   //Update  the manner in which i added my elements  led to none of my code working i dont know how it fixed
+  //I need to remove these again i think the duplicates are clashing as seen in duplicate textArea
 
-  headerSectionContainer: document.getElementById("layout"),
-  button: document.getElementById("dropdownBtn"),
-  addNewTaskButton: document.getElementById("add-new-task-btn"),
-  editButton: document.getElementById("edit-board-btn"),
   headerBoardName: document.getElementById("header-board-name"),
-  deleteTaskButton: document.getElementById("deleteBoardBtn"),
-  createNewTaskBtn: document.getElementById("add-new-task-btn"),
-
-  columnDivs: document.querySelectorAll("column-div"),
-
-  form: document.getElementById("new-task-modal-window"),
-  input: document.getElementById("title-input"),
-  textArea: document.getElementById("desc-input"),
-  selectColumn: document.getElementById("select-status"),
-  btnContainer: document.getElementById("button-group"),
-  createTaskBtn: document.getElementById("create-task-btn"),
-  cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
-
-  editModalTaskContainer: document.getElementById("edit-task-modal-window"),
-  input: document.getElementById("edit-task-title-input"),
-  editBtn: document.getElementById("edit-btn"),
-  textArea: document.getElementById("edit-task-desc-input"),
-  select: document.getElementById("edit-select-status"),
-  btnContainer: document.getElementById("edit-task-div button-group"),
-  saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
-  cancelEditBtn: document.getElementById("cancel-edit-btn"),
-  deleteTaskBtn: document.getElementById("delete-task-btn"),
-  modalWindow: document.getElementById("new-task-modal-window"),
-
-  editTaskModal: document.getElementById("new-task-modal-window"),
-
+  columnDivs: document.querySelectorAll(".column-div"),
   filterDiv: document.getElementById("filterDiv"),
+  hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
+  showSideBarBtn: document.getElementById("show-side-bar-btn"),
+  themeSwitch: document.getElementById("switch"),
+  createNewTaskBtn: document.getElementById("add-new-task-btn"),
+  modalWindow: document.getElementById("new-task-modal-window"),
+  editTaskModal: document.querySelector(".edit-task-modal-window"),
 };
 
 let activeBoard = "";
