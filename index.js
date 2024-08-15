@@ -1,4 +1,6 @@
+// deleted my code multiple times had to cut and paste this version of code form my github from yesterday
 // TASK: import helper functions from utils
+//currently
 import {
   getTasks,
   createNewTask,
@@ -18,6 +20,7 @@ function initializeData() {
   if (!localStorage.getItem("tasks")) {
     localStorage.setItem("tasks", JSON.stringify(initialData)); // The initialData is a problem  since its not intialzized  we imported the data utils
     localStorage.setItem("showSideBar", "true");
+    localStorage.setItem("light-theme", "false"); // added this to intialize light theme functionality
     console.log("Data has been initialized and saved to localStorage.");
   } else {
     console.log("Data already exists in localStorage");
