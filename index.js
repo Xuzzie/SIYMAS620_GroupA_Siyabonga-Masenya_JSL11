@@ -225,7 +225,7 @@ function addTask(event) {
   const taskTitle = document.getElementById("title-input").value;
   //Assign user input to the task object
   const task = {
-    title: document.getElementById("title-input").value, // changed from  fetching the element to directly fetching the id
+    title: document.getElementById("title-input").value,
     description: document.getElementById("desc-input").value,
     status: document.getElementById("select-status").value,
     board: elements.headerBoardName.textContent,
@@ -289,12 +289,15 @@ function openEditTaskModal(task) {
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
+  let taskTitleEl = document.getElementById("edit-task-title-input");
+  let taskDescriptionEl = document.getElementById("edit-task-desc-input");
+  let taskStatusEl = document.getElementById("edit-select-status");
 
-  const updatedTitle = document.getElementById("editTaskTitle").value;
-  const updatedDescription = document.getElementById(
-    "editTaskDescription"
-  ).value;
-  const updatedDueDate = document.getElementById("editTaskDueDate").value;
+  //const updatedTitle = document.getElementById("editTaskTitle").value;
+  //const updatedDescription = document.getElementById(
+  // "editTaskDescription"
+  //).value;
+  //const updatedDueDate = document.getElementById("editTaskDueDate").value;
 
   // Create an object with the updated task details
   const updatedTask = {
