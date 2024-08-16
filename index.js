@@ -264,9 +264,34 @@ function toggleTheme() {
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
-  document.getElementById("editTaskTitle").value = task.title; // we are adding the existing details into the tasks
-  document.getElementById("editTaskDescription").value = task.description;
-  document.getElementById("editTaskDueDate").value = task.dueDate;
+  let userTaskTitleInput = document.getElementById("edit-task-title-input");
+  let userTaskDescriptionInput = document.getElementById(
+    "edit-task-desc-input"
+  );
+  let userTaskStatusSelect = document.getElementById("edit-select-status");
+
+  userTaskTitleInput.value = task.title;
+  userTaskDescriptionInput.value = task.description;
+  userTaskStatusSelect.value = task.status;
+
+  elements.editTaskModal.style.display = "block";
+
+  let cancelButton = document.getElementById("cancel-edit-btn");
+  cancelButton.addEventListener("click", function () {
+    elements.editTaskModal.style.display = "none";
+  });
+
+  let deleteButton = document.getElementById("delete-task-btn");
+  deleteButton.addEventListener("click", function () {
+    deleteTask(task.id);
+    refreshTasksUI();
+    elements.editTaskModal.style.display = "none";
+  });
+
+  let saveButton = document.getElementById("save-task-changes-btn");
+  saveButton.addEventListener("click", function () {
+    saveTaskChanges(task.id);
+  });
 
   // Get button elements from the task modal
   const saveChangesButton = document.getElementById("saveChangesButton"); // conencted elements for the buttons
